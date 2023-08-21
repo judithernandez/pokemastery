@@ -3,17 +3,18 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
+        <link rel="stylesheet" href="{% static 'css/styles.css' %}">
         <title>PokéPedia</title>
       </head>
       <body>
         <main>
           <h1>PokéPedia</h1>
             <h2>Hello, I'm {{pokemon_name}}!</h2>
-            {% comment %} {% if pokemon_sprite %} {% endcomment %}
-                {% comment %} <img src="{{pokemon_sprite}}" alt="A pokémon vectorized photo"></a> {% endcomment %}
-            {% comment %} {% else %} {% endcomment %}
-            <img src="{% static 'img/{{pokemon_id}}.png' %}" alt="A pokémon AI generated photo"></a>
-            {% comment %} {% endif %} {% endcomment %}
+            {% if pokemon_sprite %}
+                <img src="{{pokemon_sprite}}" alt="A pokémon vectorized photo"></a>
+            {% else %}
+                <img src="{% static 'img/' %}{{pokemon_id}}.png" alt="A pokémon AI generated photo"></a>
+            {% endif %}
             <section>
                 <ul>
                     <li>ID: {{pokemon_id}}</li>
