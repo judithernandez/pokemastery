@@ -24,12 +24,12 @@ def get_pokemon_type_1(pokemon_id):
     else:
         return None
     
-def get_pokemon():
-    url = f"https://pokeapi.co/api/v2/pokemon/"
+def get_pokemon_list():
+    url = f"https://pokeapi.co/api/v2/pokemon/?limit=1281"
     response = requests.get(url)
     
     if response.status_code == 200:
         data = response.json()
-        return data
+        return data['results']
     else:
         return None
