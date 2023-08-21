@@ -26,7 +26,7 @@ def hello_pokemon(request, pokemon_id):
 def pokepedia(request):
     return render(request, "pokepedia.html")
 
-def index(request, pokemon):
+def pokemon(request, pokemon):
     # API endpoint URL
     api_url = "https://pokeapi.co/api/v2/pokemon/"
     api_url += str(pokemon)
@@ -64,4 +64,4 @@ def index(request, pokemon):
         'pokemon_types': pokemon_types
         }
 
-    return render(request, "index.html", context)
+    return render(request, "pokemon.html", context)

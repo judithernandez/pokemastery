@@ -23,6 +23,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.greetings, name='greetings'), # static URL
     path('pokepedia/', views.pokepedia, name='pokepedia'), # static URL
-    path('pokepedia/<pokemon>', views.index, name='index'), # dynamic URL
+    path('pokepedia/<pokemon>', views.pokemon, name='pokemon'), # dynamic URL
 
 ]
