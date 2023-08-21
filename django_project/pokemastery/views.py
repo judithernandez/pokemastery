@@ -31,7 +31,7 @@ def pokemon(request, pokemon):
     pokemon_stat_names = [stat["stat"]["name"] for stat in data["stats"]]
     pokemon_types = [type["type"]["name"].capitalize() for type in data["types"]]
 
-    pokemon_stats_data = [{'name': name.capitalize(), 'value': value} for name, value in zip(pokemon_stat_names, pokemon_stats)]
+    pokemon_stats_data = [{'name': name.upper(), 'value': value} for name, value in zip(pokemon_stat_names, pokemon_stats)]
         
 
     # Render the pokemon.html template with the context

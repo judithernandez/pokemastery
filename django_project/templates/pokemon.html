@@ -3,55 +3,114 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-        <title>PokéPedia</title>
+        <link rel="stylesheet" href="{% static 'css/pokemon_styles.css' %}">
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <title>PokéPédia</title>
       </head>
       <body>
         <main>
-          <h1>PokéPedia</h1>
+          <h1>PokéPédia</h1>
             <h2>Hello, I'm {{pokemon_name}}!</h2>
             {% if pokemon_sprite %}
                 <img src="{{pokemon_sprite}}" alt="A pokémon vectorized photo"></a>
             {% else %}
                 <img src="{% static 'img/' %}{{pokemon_id}}.png" alt="A pokémon AI generated photo"></a>
             {% endif %}
-            <section>
-                <ul>
-                    <li>ID: {{pokemon_id}}</li>
-                    <li>Name: {{pokemon_name}}</li>
-                    <li>Height: {{pokemon_height}} m</li>
-                    <li>Weight: {{pokemon_weight}} kg</li>
+            <fieldset>
+                <ul class="horizontal-info">
+                    <li class="diff"><h3>Name:</h3> {{pokemon_name}}</li>
+                    <li class="diff"><h3>Height:</h3> {{pokemon_height}} m</li>
+                    <li class="diff"><h3>Weight:</h3> {{pokemon_weight}} kg</li>
                 </ul>
-            </section>
-            <section>
-                Type: 
+            </fieldset>
+            <fieldset>
+                <h3>Type:</h3>
                 {% for type in pokemon_types %}
                     <ul>
                         <li>{{type}}</li>
                     </ul>
                 {% endfor %}
-            </section>
-            <section>
-                Abilities: 
+            </fieldset>
+            <fieldset>
+                <h3>Abilities:</h3>
                 {% for ability in pokemon_abilities %}
                     <ul>
                         <li>{{ability}}</li>
                     </ul>
                 {% endfor %}
-            </section>
-            <section>
-                Stats: 
-                {% for stat in pokemon_stats_data %}
-                    <ul>
-                        <li>{{stat.name}}: {{stat.value}}</li>
-                    </ul>
-                {% endfor %}
-            </section>
+            </fieldset>
+            <fieldset>
+                <h3>Stats:</h3>
+                <canvas id="statsChart" width="400" height="200"></canvas>
+            </fieldset>
+            
         </main>
         <footer>
           <p> 
             No Copyright - <a href="https://judithribe.com/">Judith H. Ribé</a>
           </p>
         </footer>
+        <script>
+            const statsData = [
+                {% for stat in pokemon_stats_data %}
+                    {{ stat.value }},
+                {% endfor %}
+            ];
+        
+            const statNames = [
+                {% for stat in pokemon_stats_data %}
+                    "{{ stat.name }}",
+                {% endfor %}
+            ];
+        
+            const ctx = document.getElementById('statsChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: statNames,
+                    datasets: [{
+                        data: statsData,
+                        backgroundColor: '#2e6da4',
+                        borderWidth: 0, // Remove bar borderWidth
+                    }],
+                    hoverOffset: 5, // Make hover effect more visible
+                },
+                options: {
+                    responsive: true, // Enable automatic resizing
+                    maintainAspectRatio: true, // Disable automatic canvas resizing    
+                    plugins: {
+                        legend: {
+                            display: false, // Hide legend
+                        },
+                    },
+                    scales: {
+                        x: {
+                            grid: {
+                                display: false, // Hide x-axis grid lines
+                            },
+                            // ticks in two lines when necessary
+                            ticks: {
+                                maxRotation: 0, // Disable label rotation
+                                autoSkip: false, // Disable label skipping
+
+                                font: {
+                                    size: 10,
+                                },
+                            },
+                        },
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            grid: {
+                                display: true, // Hide y-axis grid lines
+                            },
+                        },
+                    },
+                },
+            });
+        </script>
+        
+        
+                
       </body>
     </html>
