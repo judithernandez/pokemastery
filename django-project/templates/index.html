@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>PokéPedia</title>
+      </head>
+      <body>
+        <main>
+          <h1>PokéPedia</h1>
+          <section>
+            <h2>Hello, I'm {{pokemon_name}}!</h2>
+            <img src="{{pokemon_sprite}}" alt="A pokémon vectorized photo"></a>
+            <ul>
+                <li>Number: #{{pokemon_id}}</li>
+                <li>Name: {{pokemon_name}}</li>
+                <li>Height: {{pokemon_height}} m</li>
+                <li>Weight: {{pokemon_weight}} kg</li>
+                <li>Type: 
+                    {% for type in pokemon_types %}
+                        <ul>
+                            <li>{{type}}</li>
+                        </ul>
+                    {% endfor %}
+                </li>
+                <li>Abilities: 
+                    {% for ability in pokemon_abilities %}
+                        <ul>
+                            <li>{{ability}}</li>
+                        </ul>
+                    {% endfor %}
+                </li>
+                <li> Stats: 
+                    {% for stat in pokemon_stats %}
+                        <ul>
+                            <li>{{stat}}</li>
+                        </ul>
+                    {% endfor %}
+                {% comment %} <li>Moves: 
+                    {% for move in pokemon_moves %}</li>
+                        <ul>
+                            <li>{{move}}</li>
+                        </ul>
+                    {% endfor %}
+                </li> {% endcomment %}
+
+            </ul>
+          </section>
+        </main>
+        <footer>
+          <p> 
+            No Copyright - Judith H. Ribé</a>
+          </p>
+        </footer>
+      </body>
+    </html>
