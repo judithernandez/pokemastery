@@ -1,3 +1,4 @@
+{%load static%}
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -7,44 +8,44 @@
       <body>
         <main>
           <h1>PokéPedia</h1>
-          <section>
             <h2>Hello, I'm {{pokemon_name}}!</h2>
-            <img src="{{pokemon_sprite}}" alt="A pokémon vectorized photo"></a>
-            <ul>
-                <li>Number: #{{pokemon_id}}</li>
-                <li>Name: {{pokemon_name}}</li>
-                <li>Height: {{pokemon_height}} m</li>
-                <li>Weight: {{pokemon_weight}} kg</li>
-                <li>Type: 
-                    {% for type in pokemon_types %}
-                        <ul>
-                            <li>{{type}}</li>
-                        </ul>
-                    {% endfor %}
-                </li>
-                <li>Abilities: 
-                    {% for ability in pokemon_abilities %}
-                        <ul>
-                            <li>{{ability}}</li>
-                        </ul>
-                    {% endfor %}
-                </li>
-                <li> Stats: 
-                    {% for stat in pokemon_stats %}
-                        <ul>
-                            <li>{{stat}}</li>
-                        </ul>
-                    {% endfor %}
-                {% comment %} <li>Moves: 
-                    {% for move in pokemon_moves %}</li>
-                        <ul>
-                            <li>{{move}}</li>
-                        </ul>
-                    {% endfor %}
-                </li> {% endcomment %}
-
-            </ul>
-          </section>
+            {% comment %} {% if pokemon_sprite %} {% endcomment %}
+                {% comment %} <img src="{{pokemon_sprite}}" alt="A pokémon vectorized photo"></a> {% endcomment %}
+            {% comment %} {% else %} {% endcomment %}
+            <img src="{% static 'img/{{pokemon_id}}.png' %}" alt="A pokémon AI generated photo"></a>
+            {% comment %} {% endif %} {% endcomment %}
+            <section>
+                <ul>
+                    <li>ID: {{pokemon_id}}</li>
+                    <li>Name: {{pokemon_name}}</li>
+                    <li>Height: {{pokemon_height}} m</li>
+                    <li>Weight: {{pokemon_weight}} kg</li>
+                </ul>
+            </section>
+            <section>
+                Type: 
+                {% for type in pokemon_types %}
+                    <ul>
+                        <li>{{type}}</li>
+                    </ul>
+                {% endfor %}
+            </section>
+            <section>
+                Abilities: 
+                {% for ability in pokemon_abilities %}
+                    <ul>
+                        <li>{{ability}}</li>
+                    </ul>
+                {% endfor %}
+            </section>
+            <section>
+                Stats: 
+                {% for stat in pokemon_stats_data %}
+                    <ul>
+                        <li>{{stat.name}}: {{stat.value}}</li>
+                    </ul>
+                {% endfor %}
+            </section>
         </main>
         <footer>
           <p> 
