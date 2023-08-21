@@ -10,6 +10,7 @@ body {
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
+    margin-top: auto;
 }
 
 h1 {
@@ -33,7 +34,9 @@ img {
     width: 27%;
     border-radius: 5px;
     /* TODO: align image to the center */
-    align-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
 
 }
 
